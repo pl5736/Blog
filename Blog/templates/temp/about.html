@@ -1,0 +1,54 @@
+{% extends 'temp/base.html' %}
+{% load static from staticfiles %}
+
+{% block linkscript %}
+<link href="{% static 'temp/css/about.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block base %}
+<div class="container">
+    <div class="banner">
+        <p data-scroll-reveal="enter top over 2s">我们不停的翻弄着回忆，却再也找不回那时的自己</p>
+        <p data-scroll-reveal="enter left over 2s after 1s">人生，是一场盛大的遇见。若你懂得，就请珍惜。</p>
+        <p data-scroll-reveal="enter bottom over 2s after 2s">无论下多久的雨，最后都会有彩虹；无论你多么悲伤，要相信幸福在前方等候.</p>
+    </div>
+    <div class="memorial_day">
+        <div class="time_axis"></div>
+        <ul>
+            <li class="n1"><a href="#">编程入行</a>
+            <div class="dateview">2014-09-01</div>
+            </li>
+            <li class="n2"><a href="#">创建第一个软件</a>
+            <div class="dateview">2015-01-12</div>
+            </li>
+            <li class="n3"><a href="#">开始了解多种语言</a>
+            <div class="dateview">2016-06-08</div>
+            </li>
+            <li class="n4"><a href="#">尝试写出自己的应用</a>
+            <div class="dateview">2017-03-08</div>
+            </li>
+            <li class="n5"><a href="#">开始专注Python</a>
+            <div class="dateview">2017-09-08</div>
+            </li>
+        </ul>
+    </div>
+    <div class="about left">
+        <h2>Just about me</h2>
+        <ul>
+            <p>Meteor·陨雨，男，Python程序员，注定要踏上朝九晚九的程序猿之路。</p>
+            <p>
+            凡事何必都看淡，自己理解就很好，决定我们一生的，是我们的选择。我们时刻都在失去，我们努力的想去拥有更多的精彩，可惜只有两只手，所以必须学会选择，学会放弃。要清楚哪些是我们不需要的，如果心的欲望太大，什么都想抓，可能最后什么也抓不牢。只有学会放弃，才能更好地持有。无须强求，最美好的总会在不经意间出现。每天都是改变生活的机会。努力经营，往渴望的生活方向前进。为自己相信的事情，艰苦奋斗；心怀远大，藐视忧虑。量力而行，不用超负荷；只要每天都有进步。还有，在没有做之前，你要决定是否去做，而不是找借口，并且要学习新知识，越来越接近自己的目标。你看到什么样的世界，就拥有什么样的内心。岁月弄人，年轻时，有些事你无法懂；懂得时，年轻已是不复来。</p>
+            <p>昨天若是都过去了，那还有什么过不去的明天。有人说，生活是一种享受；有人说，生活是一种无奈。其实，生活有享受也有无奈，有欣慰也有困惑。生活就象一枚青果，你含在嘴里慢慢品，细细嚼，便有诸多滋味在你舌尖蔓延，也甜，也酸，也苦，也涩，人生有两种境界，一种是痛而不言，另一种是笑而不语。当我们习惯沉默，原来是为了躲避失望。放弃可以说是件痛苦的事，因为对生活寄予太多的渴望，对未来秉持长久的梦想，许多东西不能割舍。但是，生活有时是低谷，深渊，过多的负重，可能加速坠落，有些人生与自我，既可用来战胜，更是用来相处的，命运的精彩，不只在轰烈之间，那些平淡与安静，亦是心灵的另一种力量。此生不长，唯有珍爱，才不会错过那些美与可爱，让遗憾尽量少些。</p>
+            <p>
+            青春，注定了要颠簸，要有眼泪和汗水，有委屈、不甘和失败。我为自己这样感到委屈，但是看看周围，想想，也许这正是最正确的生活，这样走的才会踏实。无论是鸡飞狗跳，还是躁动不安，青春都不属于安逸，安逸是一潭死水，跳进去就出不来。总有些事，管你愿不愿意，它都要发生，人之所以会烦恼，就是记性太好。人之所以会痛苦，就是追求的太多。人之所以不快乐，就是计较的太多。人之所以不幸福，就是没有知足心。人之所以活的累，就是想的太多。人，永远是矛盾的主体，经常处在犹豫和憧憬的困惑中，夹在世俗的单行道上，走不远，也回不去。面对恐惧，擦干眼泪，每一天醒来都要比昨天更坚强。有些事，实在办不到，就算了吧，千万别为难自己。忍一忍风平浪静、退一步海阔天空。
+            </p>
+        </ul>
+        <h2>About my blog</h2>
+        <p>域  名：www.liup.xin 创建于2017年11月29日 </p>
+        <p>服务器：阿里云服务器<a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=8smrzoqa&amp;productCode=vm" target="_blank" class="blog_link">购买空间</a><a href="#" target="_blank" class="blog_link">参考我的空间配置</a></p>
+        <p>程  序：Python Django</p>
+
+
+    </div>
+</div>
+{% endblock %}
