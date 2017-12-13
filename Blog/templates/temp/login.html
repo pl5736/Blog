@@ -1,36 +1,24 @@
 {% extends 'temp/base.html' %}
 {% load static from staticfiles %}
-{% block linkscript%}
-<link rel="stylesheet" type="text/css" href="{% static 'mine/css/login.css' %}" />
-<script type="text/javascript" charset="utf-8" src="{% static 'mine/js/login.js' %}" ></script>
-{% endblock linkscript%}
-
 
 {% block base %}
 <div id="login">
-    <a href="/mine/"><p>&lt;返回</p></a>
-    <div id="box">
-        <form action="/login/" method="post">
-            {% csrf_token %}
-            <div class="input-group">
-                账号：<input id="accunt" type="text" class="form-control" aria-describedby="basic-addon1" name="userAccount">
-                <br />
-                {% if error.username.0 %}
-                <span>{{error.username.0}}</span>
-                {% endif %}
-            </div>
-            <div class="input-group">
-                密码：<input id="pass" type="password" class="form-control" aria-describedby="basic-addon1" name="userPass">
-                <br />
-                {% if error.passwd.0 %}
-                <span>{{error.passwd.0}}</span>
-                {% endif %}
-            </div>
-            <div>
-                <input type="submit" value="登陆"/>
-            </div>
-        </form>
-
-    </div>
+    <a href="{% url 'myblog:home' %}"><p>&lt;返回首页</p></a>
+    <form class="form-horizontal" action="/login/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-group">
+            <span class="input-group-addon">账号</span>
+            <input id="accunt" required="required" type="text" class="form-control" aria-describedby="basic-addon1" name="userAccount">
+            <br />
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">密码</span>
+            <input id="pass" required="required" type="password" class="form-control" aria-describedby="basic-addon1" name="userPass">
+            <br />
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><input type="submit" class="form-control" aria-describedby="basic-addon1" value="登录"></span>
+        </div>
+    </form>
 </div>
 {% endblock base %}

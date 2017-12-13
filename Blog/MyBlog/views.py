@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .forms.login import LoginForm
 from MyBlog.models import User
 from django.shortcuts import redirect
 from django.conf import settings
@@ -12,29 +11,25 @@ import os
 
 def login(request):
     if request.method == "POST":
-        f = LoginForm(request.POST)
-        if f.is_valid():
-            nameid = f.cleaned_data["username"]
-            pswd = f.cleaned_data["passwd"]
-            try:
-                user = User.objects.get(userAccount=nameid)
-                if user.userPasswd != pswd:
-                    return redirect('/login/')
-            except User.DoesNotExist as e:
+        nameid = request.POST.get("userAccount")
+        pswd = request.POST.get("userPass")
+        try:
+            user = User.objects.get(userAccount=nameid)
+            if user.userPasswd != pswd:
                 return redirect('/login/')
+        except User.DoesNotExist as e:
+            return redirect('/login/')
 
-            # 登陆成功
-            token = time.time() + random.randrange(1, 100000)
-            user.userToken = str(token)
-            user.save()
-            request.session["username"] = user.userName
-            request.session["token"] = user.userToken
-            return redirect('/')
-        else:
-            return render(request, 'temp/index.html', {"title": "登陆", "form": f, "error": f.errors})
+        # 登陆成功
+        token = time.time() + random.randrange(1, 100000)
+        user.userToken = str(token)
+        user.save()
+        request.session["username"] = user.userName
+        request.session["userimg"] = user.userImg
+        request.session["token"] = user.userToken
+        return redirect('/')
     else:
-        f = LoginForm()
-        return render(request, 'temp/login.html', {"title": "登陆", "form": f})
+        return render(request, 'temp/login.html')
 
 
 def register(request):
@@ -43,46 +38,125 @@ def register(request):
         userPasswd = request.POST.get("userPass")
         userName = request.POST.get("userName")
         userPhone = request.POST.get("userPhone")
-        userAdderss = request.POST.get("userAdderss")
-        userRank = 0
+        userEmail = request.POST.get("userEmail")
+        is_delete = 0
+        confirmed = 0
         token = time.time() + random.randrange(1, 100000)
         userToken = str(token)
         f = request.FILES["userImg"]
-        userImg = os.path.join(settings.MDEIA_ROOT, userAccount + ".png")
-        with open(userImg, "wb") as fp:
+        userImg_last = str(f).split('.')[-1]
+        userImg = os.path.join(userAccount + '.' + userImg_last)
+        absImg = os.path.join(settings.MDEIA_ROOT, userAccount)
+        with open(absImg, "wb") as fp:
             for data in f.chunks():
                 fp.write(data)
 
-        user = User.createuser(userAccount, userPasswd, userName, userPhone, userAdderss, userImg, userRank, userToken)
+        user = User.createuser(userAccount, userPasswd, userName, userPhone,
+                               userEmail, userImg, userToken, is_delete,
+                               confirmed)
         user.save()
 
         request.session["username"] = userName
+        request.session["userimg"] = userImg
         request.session["token"] = userToken
 
         return redirect('/')
     else:
-        return render(request, 'temp/register.html', {"title": "注册"})
+        return render(request, 'temp/register.html')
+
+
+def logout(request):
+    request.session.clear()
+    username = '未登录'
+    context = {'username': username}
+    return render(request, 'temp/index.html', context)
 
 
 def home(request):
-    return render(request, 'temp/index.html')
+    if 'username' in request.session:
+        username = request.session['username']
+        if 'userimg' in request.session:
+            img = request.session['userimg']
+            img = '/static/mdeia/%s' % img
+            context = {'username': username, 'img': img}
+        else:
+            pass
+    else:
+        username = '未登录'
+        context = {'username': username}
+    return render(request, 'temp/index.html', context)
 
 
 def about(request):
-    return render(request, 'temp/about.html')
+    if 'username' in request.session:
+        username = request.session['username']
+        if 'userimg' in request.session:
+            img = request.session['userimg']
+            img = '/static/mdeia/%s' % img
+            context = {'username': username, 'img': img}
+        else:
+            pass
+    else:
+        username = '未登录'
+        context = {'username': username}
+    return render(request, 'temp/about.html', context)
 
 
 def gbook(request):
-    return render(request, 'temp/gbook.html')
+    if 'username' in request.session:
+        username = request.session['username']
+        if 'userimg' in request.session:
+            img = request.session['userimg']
+            img = '/static/mdeia/%s' % img
+            context = {'username': username, 'img': img}
+        else:
+            pass
+    else:
+        username = '未登录'
+        context = {'username': username}
+    return render(request, 'temp/gbook.html', context)
 
 
 def learn(request):
-    return render(request, 'temp/learn.html')
+    if 'username' in request.session:
+        username = request.session['username']
+        if 'userimg' in request.session:
+            img = request.session['userimg']
+            img = '/static/mdeia/%s' % img
+            context = {'username': username, 'img': img}
+        else:
+            pass
+    else:
+        username = '未登录'
+        context = {'username': username}
+    return render(request, 'temp/learn.html', context)
 
 
 def manshenghuo(request):
-    return render(request, 'temp/manshenghuo.html')
+    if 'username' in request.session:
+        username = request.session['username']
+        if 'userimg' in request.session:
+            img = request.session['userimg']
+            img = '/static/mdeia/%s' % img
+            context = {'username': username, 'img': img}
+        else:
+            pass
+    else:
+        username = '未登录'
+        context = {'username': username}
+    return render(request, 'temp/manshenghuo.html', context)
 
 
 def mbfx(request):
-    return render(request, 'temp/mbfx.html')
+    if 'username' in request.session:
+        username = request.session['username']
+        if 'userimg' in request.session:
+            img = request.session['userimg']
+            img = '/static/mdeia/%s' % img
+            context = {'username': username, 'img': img}
+        else:
+            pass
+    else:
+        username = '未登录'
+        context = {'username': username}
+    return render(request, 'temp/mbfx.html', context)
