@@ -47,11 +47,29 @@ function check(){
     var pwd = $('#pass').val()
     var pwdc = $('#passwd').val()
     var username = $('#uname').val()
-    if(pwd == pwdc){
-        console.log('1')
-        return true
-    }else{
-        console.log('0')
-        return false
-    }
+    /*
+     *if(pwd == pwdc){
+     *    console.log('1')
+     *    return false
+     *}else{
+     *    console.log('0')
+     *    return false
+     *}
+     */
+
+    var b
+    $.ajaxSettings.async = false
+    $.getJSON('/checkusername/', {'username': username}, function(data){
+        if(data['state'] == 200){
+            b = true
+        }else if (data['state'] == 201){
+            alert('用户名格式不正确')
+            b = false
+        }else{
+            alert('其他')
+            return false
+        }
+    })
+    $.ajaxSettings.async = true
+    return b
 }
