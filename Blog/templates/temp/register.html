@@ -10,7 +10,7 @@
     <div id="header">
         <a href="{% url 'myblog:home' %}"><p>&lt;返回首页</p></a>
     </div>
-    <form onsubmit="return check();" class="form-horizontal" action="/register/" method="post" enctype="multipart/form-data">
+    <form onsubmit="return check()" class="form-horizontal" action="/register/" method="post" enctype="multipart/form-data">
         {%csrf_token%}
         <div class="input-group">
             <span class="input-group-addon">账号</span>

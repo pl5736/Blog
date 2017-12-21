@@ -79,9 +79,13 @@ def checkAccount(request):
     if len(user) > 0:
         msg = '账号已存在'
         state = 201
-    else:
+    elif len(account) > 5 and len(account) < 13:
         msg = '账号可用'
         state = 200
+    else:
+        msg = '账号长度不正确'
+        state = 201
+
     data = {'msg': msg, 'state': state}
     return JsonResponse(data)
 
@@ -90,12 +94,17 @@ def checkAccount(request):
 def checkPassword(request):
     pwd = request.GET.get('pwd')
     pwdc = request.GET.get('pwdc')
-    if pwd == pwdc:
-        msg = '两次密码一致'
-        state = 200
+    if len(pwd) > 6 and len(pwd) < 17 and len(pwdc) > 6 and len(pwdc) < 17:
+        if pwd == pwdc:
+            msg = '两次密码一致'
+            state = 200
+        else:
+            msg = '两次密码不一致'
+            state = 201
     else:
-        msg = '两次密码不一致'
+        msg = '密码长度不正确'
         state = 201
+
     data = {'msg': msg, 'state': state}
     return JsonResponse(data)
 
@@ -110,6 +119,7 @@ def checkUsername(request):
     else:
         msg = '用户名可用'
         state = 200
+
     data = {'msg': msg, 'state': state}
     return JsonResponse(data)
 
@@ -145,7 +155,8 @@ def addCollection(request, collection, path):
     if 'username' in request.session:
         username = request.session['username']
         user = User.objects.get(userName=username)
-        if not Collection.objects.filter(collection=collection).filter(user_id=user.userID):
+        if not Collection.objects.filter(collection=collection
+                                         ).filter(user_id=user.userID):
             collect = Collection()
 
             collect.user = user

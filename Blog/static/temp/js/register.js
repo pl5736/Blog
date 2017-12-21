@@ -43,13 +43,15 @@ $(function(){
 
 
 function check(){
-    var account = $(this).val()
+    var account = $('#accunt').val()
     var pwd = $('#pass').val()
     var pwdc = $('#passwd').val()
-    var username = $(this).val()
+    var username = $('#uname').val()
     if(pwd == pwdc){
+        console.log('1')
         return true
     }else{
+        console.log('0')
         return false
     }
 }
