@@ -23,6 +23,44 @@
             <div class="about_girl"><span><a href="#"><img src="{% static 'temp/images/girl.jpg' %}"></a></span>
                 <p>当您驻足停留过，从此便注定我们的缘分。站在时间的尽头，我们已是朋友，前端的路上我再也不用一个人独自行走。</p>
             </div>
+            <div class="gbko">
+                <textarea class="textarea" rows="4" placeholder="有事没事说两句..." form="sayForm" name='comment'></textarea>
+                <form action="{% url 'myblog:comment' %}" method="post" accept-charset="utf-8" id="sayForm">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-danger saying_a" value="发表">
+                </form>
+                <div>
+                    <ol>
+                        {% if comment %}
+                        {% for c in comment %}
+                        <li>
+                        {% for i in c %}
+
+                        {% ifequal forloop.counter0 0 %}
+                        <a href="#"><img id="headimg" src={{ i }}></a>
+                        {% endifequal %}
+
+                        {% ifequal forloop.counter0 1 %}
+                        <a href="#" >{{ i }} ：</a>
+                        {% endifequal %}
+
+                        {% ifequal forloop.counter0 2 %}
+                        <span>{{ i }}</span>
+                        {% endifequal %}
+
+                        {% ifequal forloop.counter0 3 %}
+                        <span class='say_time'>{{ i }}</span>
+                        {% endifequal %}
+
+                        {% endfor %}
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                        <span>留言空空，赶快留下你的痕迹吧...</span>
+                        {% endif %}
+                    </ol>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,27 @@
+{% extends 'temp/base.html' %}
+{% load static from staticfiles %}
+
+{% block linkscript %}
+<link href="{% static 'temp/css/collection.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block base %}
+<div class="container">
+    <ol>
+        {% if collection %}
+        {% for c in collection %}
+        <li>
+        {% for i in c %}
+        {% if not forloop.counter0 %}
+        <a href={{ i }} target='_blank'>{% else %}<span>{{ i }}</span></a>
+        <a href={% url 'myblog:delCollection' collection=i %} class='co'><span>取消收藏</span></a>
+        {% endif %}
+        {% endfor %}
+        </li>
+        {% endfor %}
+        {% else %}
+        <span>你没有收藏任何东西，赶快去尝试收藏功能吧...</span>
+        {% endif %}
+    </ol>
+</div>
+{% endblock %}

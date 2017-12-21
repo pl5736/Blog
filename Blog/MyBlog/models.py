@@ -7,7 +7,7 @@ class User(models.Model):
     userID = models.IntegerField(primary_key=True)
     userAccount = models.CharField(max_length=20, unique=True)
     userPasswd = models.CharField(max_length=20)
-    userName = models.CharField(max_length=20)
+    userName = models.CharField(max_length=20, unique=True)
     userPhone = models.CharField(max_length=20)
     userEmail = models.CharField(max_length=30)
     userImg = models.CharField(max_length=150)
@@ -22,3 +22,20 @@ class User(models.Model):
                 userPhone=phone, userEmail=email, userImg=img,
                 userToken=userToken, is_delete=is_delete, confirmed=confirmed)
         return u
+
+
+class Collection(models.Model):
+    collectionID = models.IntegerField(primary_key=True)
+    collection = models.CharField(max_length=150)
+    path = models.CharField(max_length=100)
+
+    user = models.ForeignKey(User)
+
+
+class Comment(models.Model):
+    commentID = models.IntegerField(primary_key=True)
+    comm = models.TextField()
+    date_publish = models.DateTimeField(auto_now_add=True)
+
+    user = models.ForeignKey(User)
+    pid = models.ForeignKey('self', blank=True, null=True)

@@ -34,6 +34,8 @@ footer { text-align: center; padding: 20px 0 }
 .ctitle span{ float:right; font-size:14px; position:absolute; right:20px ; top:20px;text-shadow: rgba(7, 84, 152, 0.71) 1px 1px 1px;}
 
 .mynav {margin-bottom: 0px;}
-.cbp_tmlabel {height: 206px!important;}
-#headimg {padding: 5px; margin-right: 0px;}
-.blog figure {width: 258px!important;}
+.cbp_tmlabel {height: 213px!important;}
+.cbp_tmlabel p {margin-bottom: 3%!important;}
+.readmore {margin-top: 0px!important;}
+#heada {padding: 5px; margin-right: 0px;}
+#headimg {border-radius: 50%;}

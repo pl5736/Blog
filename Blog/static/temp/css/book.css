@@ -66,7 +66,53 @@ background-color:#FFFFFF;
 .about_girl p::before { content: ""; width: 0px; height: 0px; border-style: solid; border-width: 20px 20px 20px 0; border-color: transparent #ececec transparent; position: absolute; left: -20px; top: 24px; }/* 三角形 */
 .gbko {
     background: rgb(255, 255, 255);
-    padding: 0 30px 30px 30px;
-    margin: 30px;
+    padding: 0 30px 0 30px;
+    margin: 30px 30px 10px 30px;
     border-radius: 15px;
+}
+.textarea {
+    width: 100%;
+    margin: 13px 0 10px;
+    padding: 10px;
+    color: black;
+    border: 1px solid pink;
+    resize: None;
+    outline: None;
+    border-radius: 20px;
+}
+.saying_a {
+    height: 43px;
+    width: 68px;
+    float: right;
+    margin-top: 15px;
+    border-radius: 20px;
+}
+.gbko ol {
+    margin-top: 100px;
+    padding-bottom:20px;
+}
+.gbko li{
+    margin: 10px;
+    height: 60px;
+    line-height: 60px;
+    background: #90ee90;
+    border-radius: 30px;
+}
+.gbko img{
+    float: left;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+.gbko a {
+    color: black;
+    margin-left: 10px;
+    width: 100px;
+}
+.gbko span {
+    margin-left: 30px;
+    color: black;
+}
+.say_time {
+    float: right;
+    margin-right: 50px;
 }

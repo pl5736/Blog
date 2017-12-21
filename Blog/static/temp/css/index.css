@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* blog */
-.blog { margin: 30px 20px; overflow: hidden }
+.blog { height: 430px; margin: 30px 20px; overflow: hidden }
 .blog figure { background: #ececec; border: #FFF 10px solid; width: 258px; height: 430px; float: left; margin: 0 8px 0; overflow: hidden }
 .blog figure img { display: block; margin: auto; height: 256px; overflow: hidden; }
 .blog figure p { font-size: 14px; text-shadow: #fff 1px 1px 0px; line-height: 26px; text-align: center; font-weight: bold }
@@ -28,7 +28,7 @@
 .cbp_tmtimeline > li .cbp_tmicon { width: 10px; height: 10px; font-family: 'ecoico'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; font-size: 1.4em; line-height: 40px; -webkit-font-smoothing: antialiased; position: absolute; color: #fff; background: #46a4da; border-radius: 50%; box-shadow: 0 0 0 3px #afdcf8; text-align: center; left: 170px; top: 15px; margin: 0 0 0 -25px; }
 .blogpic { width: 200px; height: 120px; overflow: hidden; display: block; float: left; margin-right: 20px; }
 .blogpic img { width: 100%; height: auto; margin: auto; }
-a.readmore { background: #075498; color: #fff; padding: 5px 10px; float: right; margin: 20px 0 0 0; border-radius: 5px; }
+a.readmore { background: #075498; color: #fff; padding: 5px 10px; float: right; margin: 20px 10px 0 10px; border-radius: 5px; }
 .cbp_tmtimeline li .cbp_tmtime { -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; }
 .cbp_tmtimeline li:hover .cbp_tmicon { box-shadow: 0 0 0 3px #ececec; }
 .cbp_tmtimeline li:hover .cbp_tmtime { background: #afdcf8; border-radius: 20px 0 0 20px; }

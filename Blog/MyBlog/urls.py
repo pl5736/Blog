@@ -11,5 +11,15 @@ urlpatterns = [
 
     url(r'^login/', views.login, name='login'),
     url(r'^register/', views.register, name='register'),
+    url(r'^checkaccount/', views.checkAccount, name='checkAccount'),
+    url(r'^checkpassword/', views.checkPassword, name='checkPassword'),
+    url(r'^checkusername/', views.checkUsername, name='checkUsername'),
     url(r'^logout/', views.logout, name='logout'),
+
+    url(r'^collection/', views.collection, name='collection'),
+    url(r'^addcollection/(?P<collection>\w+)/(?P<path>\w+)/$',
+        views.addCollection, name='addCollection'),
+    url(r'^delcollection/(?P<collection>\w+)/$', views.delCollection,
+        name='delCollection'),
+    url(r'^comment/', views.comment, name='comment'),
 ]
