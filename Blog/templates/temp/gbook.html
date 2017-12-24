@@ -31,21 +31,26 @@
                 </form>
                 <div>
                     <ol>
+                        {% for plist in pageList %}
+                        {% ifequal plist pageNum %}
+
                         {% if comment %}
                         {% for c in comment %}
                         <li>
                         {% for i in c %}
 
                         {% ifequal forloop.counter0 0 %}
-                        <a href="#"><img id="headimg" src={{ i }}></a>
-                        {% endifequal %}
+                        <div class='div_sayUsername'>
+                            <a href="#"><img id="headimg" src={{ i }}></a>
+                            {% endifequal %}
 
-                        {% ifequal forloop.counter0 1 %}
-                        <a href="#" >{{ i }} ：</a>
-                        {% endifequal %}
+                            {% ifequal forloop.counter0 1 %}
+                            <a href="#" >{{ i }} ：</a>
+                            {% endifequal %}
 
-                        {% ifequal forloop.counter0 2 %}
-                        <span>{{ i }}</span>
+                            {% ifequal forloop.counter0 2 %}
+                            <span class='div_say'>{{ i }}</span>
+                        </div>
                         {% endifequal %}
 
                         {% ifequal forloop.counter0 3 %}
@@ -58,10 +63,32 @@
                         {% else %}
                         <span>留言空空，赶快留下你的痕迹吧...</span>
                         {% endif %}
+
+                        {% endifequal %}
+                        {% endfor %}
                     </ol>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="page">
+        <a title="首页" href="{% url 'myblog:gbook' pageNumber=1 %}"><b>&lt;&lt;</b> </a>
+        {% if page.has_previous %}
+        <a title="上一页" href="{% url 'myblog:gbook' pageNumber=page.previous_page_number %}">&lt;</a>
+        {% endif %}
+
+        {% for plist in pageList %}
+        {% ifequal plist pageNum %}
+        <a class="pagehover" href="{% url 'myblog:gbook' pageNumber=plist %}"><b>{{ plist }}</b></a>
+        {% else %}
+        <a href="{% url 'myblog:gbook' pageNumber=plist %}"><b>{{ plist }}</b></a>
+        {% endifequal %}
+        {% endfor %}
+
+        {% if page.has_next %}
+        <a title="下一页" href="{% url 'myblog:gbook' pageNumber=page.next_page_number %}">&gt;</a>
+        {% endif %}
+        <a title="尾页" href="{% url 'myblog:gbook' pageNumber=pageMax %}">&gt;&gt;</a>
     </div>
 </div>
 {% endblock %}

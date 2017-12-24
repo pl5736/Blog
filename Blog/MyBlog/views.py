@@ -3,6 +3,7 @@ from MyBlog.models import User, Collection, Comment
 from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 from django.conf import settings
+from django.core import paginator
 from PIL import Image
 import time
 import random
@@ -193,7 +194,7 @@ def comment(request):
             comment.user = user
             comment.comm = comm
             comment.save()
-            return HttpResponseRedirect('/gbook/')
+            return HttpResponseRedirect('/gbook/1/')
         else:
             return render(request, 'temp/login.html')
 
@@ -209,17 +210,29 @@ def about(request):
 
 
 # 留言
-def gbook(request):
+def gbook(request, pageNumber):
     try:
         comment = Comment.objects.all()
         comm = []
-        for c in comment:
+        for c in comment[::-1]:
             user = User.objects.all().filter(userID=c.user_id)
             username = user[0].userName
             img = user[0].userImg
-            comm.append((img, username, c.comm, c.date_publish))
+            comm.append((img, username, c.date_publish, c.comm))
 
-        context = {'comment': comm}
+        # 对象创建
+        pageIndicator = paginator.Paginator(comm, 10)
+        # 获得一个page对象
+        page = pageIndicator.page(pageNumber)
+        # 页面总数
+        pageNum = pageIndicator.num_pages
+        pageList = []
+        for i in range(pageNum):
+            pageList.append(i + 1)
+
+        context = {'comment': page.object_list, 'pageNum': page.number,
+                   'pageList': pageList, 'page': page,
+                   'pageMax': pageNum}
         return render(request, 'temp/gbook.html', context)
     except BaseException:
         return render(request, 'temp/gbook.html')

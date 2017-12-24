@@ -42,34 +42,37 @@ $(function(){
 })
 
 
+//注册信息校验函数
 function check(){
     var account = $('#accunt').val()
     var pwd = $('#pass').val()
     var pwdc = $('#passwd').val()
     var username = $('#uname').val()
-    /*
-     *if(pwd == pwdc){
-     *    console.log('1')
-     *    return false
-     *}else{
-     *    console.log('0')
-     *    return false
-     *}
-     */
 
-    var b
+    var bl
     $.ajaxSettings.async = false
-    $.getJSON('/checkusername/', {'username': username}, function(data){
+    $.getJSON('/checkaccount/', {'account': account}, function(data){
         if(data['state'] == 200){
-            b = true
-        }else if (data['state'] == 201){
-            alert('用户名格式不正确')
-            b = false
+            $.getJSON('/checkpassword/', {'pwd': pwd, 'pwdc': pwdc}, function(data){
+                if(data['state'] == 200){
+                    $.getJSON('/checkusername/', {'username': username}, function(data){
+                        if(data['state'] == 200){
+                            bl = true
+                        }else{
+                            alert('用户名格式不正确')
+                            bl = false
+                        }
+                    })
+                }else{
+                    alert('密码不符合要求')
+                    bl = false
+                }
+            })
         }else{
-            alert('其他')
-            return false
+            alert('账号格式不正确')
+            bl = false
         }
     })
     $.ajaxSettings.async = true
-    return b
+    return bl
 }

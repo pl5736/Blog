@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.gbook { margin: 30px }
+.gbook { margin: 30px 30px 0 30px }
 /* loading  */
 #fountainG { position: relative; width: 240px; height: 29px; margin-bottom: 30px }
 #fountainG li { position: absolute; top: 0;/* background: #6dabdc; 默认颜色 */ width: 29px; height: 29px; -moz-animation: bounce_fountainG 1.2s linear infinite; -moz-transform: scale(.3); -moz-border-radius: 19px; -webkit-animation: bounce_fountainG 1.2s linear infinite; -webkit-transform: scale(.3); -webkit-border-radius: 19px; -ms-animation: bounce_fountainG 1.2s linear infinite; -ms-transform: scale(.3); -ms-border-radius: 19px; -o-animation: bounce_fountainG 1.2s linear infinite; -o-transform: scale(.3); -o-border-radius: 19px; animation: bounce_fountainG 1.2s linear infinite; transform: scale(.3); border-radius: 19px; }
@@ -57,7 +57,7 @@ background-color:#FFFFFF;
 }
 }
 /* about */
-.about { padding: 20px 0; overflow: hidden }
+.about { overflow: hidden }
 .about ul { width: 1000px; margin: auto; line-height: 24px }
 .about_girl span img { width: 130px; height: 130px; border-radius: 100% }
 .about_girl { width: 100%; margin: 10px auto 0; overflow: hidden }
@@ -67,7 +67,7 @@ background-color:#FFFFFF;
 .gbko {
     background: rgb(255, 255, 255);
     padding: 0 30px 0 30px;
-    margin: 30px 30px 10px 30px;
+    margin: 30px 30px 0 30px;
     border-radius: 15px;
 }
 .textarea {
@@ -89,30 +89,38 @@ background-color:#FFFFFF;
 }
 .gbko ol {
     margin-top: 100px;
-    padding-bottom:20px;
+    margin-bottom: 0;
+    padding-bottom: 20px;
 }
 .gbko li{
-    margin: 10px;
-    height: 60px;
-    line-height: 60px;
+    margin: 20px 10px 0 10px;
+    line-height: 30px;
     background: #90ee90;
     border-radius: 30px;
+    overflow: hidden;
 }
 .gbko img{
     float: left;
     margin-top: 10px;
     margin-left: 30px;
 }
+.div_sayUsername {
+    line-height: 45px;
+    overflow: hidden;
+}
+.div_say {
+    float: right;
+    color : #e74851;
+    margin-right : 450px;
+}
 .gbko a {
-    color: black;
+    color : #e74851;
     margin-left: 10px;
     width: 100px;
-}
-.gbko span {
-    margin-left: 30px;
-    color: black;
+    overflow: hidden;
 }
 .say_time {
-    float: right;
-    margin-right: 50px;
+    float: left;
+    margin: 0 50px 20px 90px;
+    color: black;
 }
